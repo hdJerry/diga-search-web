@@ -1,14 +1,22 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<AuthPage />} />
-      <Route path='/repo' element={ <h4>Repo Page</h4> } />
-    </Routes>
+    <Switch>
+      <Route path='/login'>
+        <AuthPage />
+        </Route>
+      <Route path='/search'>
+        <SearchPage />
+        </Route>
+      <Route path='/'>
+        <h4>Repo Page</h4>
+      </Route>
+    </Switch>
   );
 }
 
