@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { searchGithub } from './function';
 import { SearchBox, SearchWrapper } from './search.style';
 
@@ -8,6 +8,8 @@ const SearchPage = () => {
 
     const [searching, setSearching] = React.useState(false);
     const [search, setSearch] = React.useState('');
+
+    let router = useHistory();
 
     let token = sessionStorage.getItem('atk');
 
@@ -27,11 +29,28 @@ const SearchPage = () => {
     const beginSearch = async () => {
 
         setSearching(true);
-        let response = await searchGithub(search, token);
 
-        console.log(response);
+        
+        try {
+            const response:any = await searchGithub(search, token);
+            
+            let {data, errors} = response;
 
-        setSearching(false);
+            if (!errors) {
+                router.push({
+                    pathname: '/repo',
+                    state: data
+                })
+            }
+            
+            
+        } catch (error) {
+            console.log(error);
+            
+            setSearching(false);
+        }
+
+        
         
         
     };

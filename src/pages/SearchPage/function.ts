@@ -63,10 +63,10 @@ return new Promise ((resolve, reject) => {
         }),
     })
         .then((res) => res.json())
-        .then((result) => {
+        .then((result:any) => {
             resolve(result)
         })
-        .catch(error => {
+        .catch((error:any) => {
             reject(error)
         })
 

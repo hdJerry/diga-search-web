@@ -103,7 +103,7 @@ export const ProfileContainer = styled.div `
         ${flexBoxCenter};
 
         & > span{
-            font-family: Roboto;
+            font-family: var(--Roboto);
             font-style: normal;
             font-weight: bold;
             font-size: 16px;
@@ -116,7 +116,7 @@ export const ProfileContainer = styled.div `
         ${flexBoxCenter};
         justify-content: unset;
         & > span {
-            font-family: Roboto;
+            font-family: var(--Roboto);
             font-style: normal;
             font-weight: normal;
             font-size: 16px;
