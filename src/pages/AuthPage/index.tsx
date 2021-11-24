@@ -31,7 +31,7 @@ const AuthPage = () => {
         .then(({ message, data }) => {
             if (message === 'success') {
                 sessionStorage.setItem('atk', data.access_token);
-                router.push('/search');
+                router.push('/');
             }
         })
         .catch(error => console.log(error))

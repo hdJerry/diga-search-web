@@ -33,5 +33,6 @@ button {
 :root {
   --primary-color: #1A0C88;
   --secondary-color: #7143FE;
+  --border-color: #C4C4C4;
   --Poppins: 'Poppins', sans-serif;
 }

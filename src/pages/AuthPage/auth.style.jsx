@@ -10,11 +10,12 @@ export const AuthWrapper = styled.div `
 `;
 
 export const AuthCard = styled.div `
-    width: 80%;
+    width: 100%;
     height: 220px;
     background-color: #FFF;
     box-shadow: 0px 0px 48px 16px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
+    padding: 10px;
 
     display: flex;
     flex-flow: column;

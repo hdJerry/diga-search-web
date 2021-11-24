@@ -3,6 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 import SearchPage from './pages/SearchPage';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -10,11 +11,10 @@ function App() {
       <Route path='/login'>
         <AuthPage />
         </Route>
-      <Route path='/search'>
-        <SearchPage />
-        </Route>
-      <Route path='/'>
-        <h4>Repo Page</h4>
+      <PrivateRoute exact path='/' component={SearchPage} redirectTo='/login' />
+      <PrivateRoute exact path='/repo' component={() => <h4>Repo Page</h4>} redirectTo='/login' />
+      <Route exact path="*">
+        <h4>Error Page</h4>
       </Route>
     </Switch>
   );

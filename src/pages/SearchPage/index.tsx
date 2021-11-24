@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { SearchWrapper } from './search.style';
+import { SearchBox, SearchWrapper } from './search.style';
 
 
 const SearchPage = () => {
@@ -12,7 +12,10 @@ const SearchPage = () => {
     }
     return (
         <SearchWrapper>
-            <h4>Search Page</h4>
+            <SearchBox>
+                <input className="search_input" placeholder="Search" />
+                <button className="search_btn">Search</button>
+            </SearchBox>
         </SearchWrapper>
     )
 };
