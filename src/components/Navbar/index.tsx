@@ -25,14 +25,16 @@ const NavBar = ({isRepo}: AppProps) => {
                             <span>Diga Search</span>
                         </p>
                     </NavLink>
-
-                    <NavSearch>
-                        <input className="search_input" placeholder="Search" />
-                        <button className="search_btn">
-                            <img src={searchIcon} alt='search icon' />
-                        </button>
-                    </NavSearch>
-
+                        {
+                            isRepo && (
+                                <NavSearch>
+                                    <input className="search_input" placeholder="Search" />
+                                    <button className="search_btn">
+                                        <img src={searchIcon} alt='search icon' />
+                                    </button>
+                                </NavSearch>
+                            )
+                        }
                     <ProfileContainer>
                         <div className="dp">
                             <span>JD</span>
