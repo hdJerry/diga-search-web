@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { flexBoxCenter, rotate } from '../../GlobalStyles/index.styles';
 
 
 export const SearchWrapper = styled.div `
@@ -28,15 +29,21 @@ export const SearchBox = styled.div `
         margin-right: 5px;
         background: var(--primary-color);
         border-radius: 30px;
+        ${flexBoxCenter};
+        & > span {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #FFFFFF;
+        }
 
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #FFFFFF;
+        & > .spinner {
+            ${flexBoxCenter};
+            & > svg {
+                animation: ${rotate} 0.5s infinite;
+            }
+        }
     }
 
     & > .search_input {
@@ -44,6 +51,7 @@ export const SearchBox = styled.div `
         margin-left: 30px;
         border: none;
         outline: none;
+        flex-grow: 1;
 
         &::placeholder {
             font-style: normal;

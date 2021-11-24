@@ -74,6 +74,7 @@ export const NavSearch = styled.div `
         margin-left: 30px;
         border: none;
         outline: none;
+        flex-grow: 1;
 
         &::placeholder {
             font-style: normal;

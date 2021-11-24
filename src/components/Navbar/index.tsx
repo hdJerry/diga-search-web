@@ -12,8 +12,6 @@ type AppProps = {
 };
 
 const NavBar = ({isRepo}: AppProps) => {
-
-    console.log(isRepo);
     
     return (
         <Nav>
