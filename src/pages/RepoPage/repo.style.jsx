@@ -130,13 +130,12 @@ export const PaginationBtn = styled.button `
     border-radius: 10px;
     ${flexBoxCenter};
 
-    & > svg {
+    & > svg > path {
+
         ${props => !props.disabled && css`
-            fill: #FFF;
             stroke: #FFF;
         `}
        ${props => props.disabled && css`
-            fill: #ccc;
             stroke: #ccc;
         `}
     }
