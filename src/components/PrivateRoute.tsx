@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, useHistory } from 'react-router-dom';
 import NavBar from './Navbar';
 
 type AppProps = {
@@ -13,6 +13,9 @@ const PrivateRoute = ({ component: Component, redirectTo, ...otherProps }: AppPr
 
     let token = sessionStorage.getItem('atk');
 
+    let {location: {pathname}} = useHistory();
+    
+
     return (
         <React.Fragment>
 
@@ -25,7 +28,7 @@ const PrivateRoute = ({ component: Component, redirectTo, ...otherProps }: AppPr
                             ?
                             (
                                 <>
-                                <NavBar />
+                                <NavBar isRepo={pathname === '/repo'} />
                                 <Component {...props} />
                                 </>
                             )

@@ -17,7 +17,7 @@ export const NavContent = styled.div `
     & a {
         text-decoration: none;
     }
-    
+
     & .logo {
         ${flexBoxCenter};
         & > img {
@@ -43,6 +43,52 @@ export const NavContent = styled.div `
         padding: 15px 130px;
     }
 `;
+
+export const NavSearch = styled.div `
+    display: none;
+    width: 400px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+    border-radius: 100px;
+    ${flexBoxCenter};
+    justify-content: space-between;
+
+     & > .search_btn {
+        ${flexBoxCenter};
+        width: 44px;
+        height: 44px;
+        margin-right: 3px;
+        background: var(--primary-color);
+        border-radius: 30px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #FFFFFF;
+    }
+
+     & > .search_input {
+        height: 44px;
+        margin-left: 30px;
+        border: none;
+        outline: none;
+
+        &::placeholder {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 30px;
+            color: #000;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        display: flex;
+    }
+`;
+
 export const ProfileContainer = styled.div `
     display: flex;
     align-items: center;

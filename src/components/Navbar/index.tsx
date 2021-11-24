@@ -1,15 +1,20 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Container } from '../../GlobalStyles/index.styles';
-import { Nav, NavContent, ProfileContainer } from './nav.style';
+import { Nav, NavContent, NavSearch, ProfileContainer } from './nav.style';
 import logo from '../../assets/icons/logo.svg';
 import dropdownDown from '../../assets/icons/dropdown-down.svg';
+import searchIcon from '../../assets/icons/search-icon.svg';
 
 
+type AppProps = {
+    isRepo: boolean
+};
 
-const NavBar = () => {
+const NavBar = ({isRepo}: AppProps) => {
 
-
+    console.log(isRepo);
+    
     return (
         <Nav>
             <Container>
@@ -20,6 +25,13 @@ const NavBar = () => {
                             <span>Diga Search</span>
                         </p>
                     </NavLink>
+
+                    <NavSearch>
+                        <input className="search_input" placeholder="Search" />
+                        <button className="search_btn">
+                            <img src={searchIcon} alt='search icon' />
+                        </button>
+                    </NavSearch>
 
                     <ProfileContainer>
                         <div className="dp">
