@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
+import NavBar from './Navbar';
 
 type AppProps = {
     redirectTo: any,
@@ -23,7 +24,10 @@ const PrivateRoute = ({ component: Component, redirectTo, ...otherProps }: AppPr
                         token
                             ?
                             (
+                                <>
+                                <NavBar />
                                 <Component {...props} />
+                                </>
                             )
                             :
                             <Redirect to={redirectTo ? redirectTo : '/login'} />

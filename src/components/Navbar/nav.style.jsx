@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { flexBoxCenter } from '../../GlobalStyles/index.styles';
 
 export const Nav = styled.div `
     width: 100%;
@@ -9,13 +10,75 @@ export const Nav = styled.div `
 
 export const NavContent = styled.div `
     width: 100%;
-    display: flex;
+    ${flexBoxCenter};
     justify-content: space-between;
+    padding: 15px 10px;
+
+    & a {
+        text-decoration: none;
+    }
+    
+    & .logo {
+        ${flexBoxCenter};
+        & > img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        & > span {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 25px;
+            line-height: 37px;
+
+            display: flex;
+            align-items: center;
+
+            color: var(--primary-color);
+        }
+    }
+
+    @media (min-width: 1024px){
+        padding: 15px 130px;
+    }
+`;
+export const ProfileContainer = styled.div `
+    display: flex;
     align-items: center;
 
-    & .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    & > .dp {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+        background: var(--secondary-color);
+        border-radius: 100px;
+        ${flexBoxCenter};
+
+        & > span{
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 19px;
+            color: #FFFFFF;
+        }
+    }
+
+    & > .fn {
+        ${flexBoxCenter};
+        justify-content: unset;
+        & > span {
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 19px;
+            color: #1C1C1C;
+        }
+
+        & > img {
+            margin-left: 10px;
+        }
     }
 `;

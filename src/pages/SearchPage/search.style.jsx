@@ -6,7 +6,7 @@ export const SearchWrapper = styled.div `
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     padding: 10px;
 `;
 

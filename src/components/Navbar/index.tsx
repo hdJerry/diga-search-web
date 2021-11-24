@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Container } from '../../GlobalStyles/index.styles';
-import { Nav, NavContent } from './nav.style';
+import { Nav, NavContent, ProfileContainer } from './nav.style';
 import logo from '../../assets/icons/logo.svg';
+import dropdownDown from '../../assets/icons/dropdown-down.svg';
+
 
 
 const NavBar = () => {
@@ -19,7 +21,15 @@ const NavBar = () => {
                         </p>
                     </NavLink>
 
-                    <div></div>
+                    <ProfileContainer>
+                        <div className="dp">
+                            <span>JD</span>
+                        </div>
+                        <div className="fn">
+                            <span>John Doe</span>
+                            <img src={dropdownDown} alt='digidropdown Down icon' />
+                        </div>
+                    </ProfileContainer>
                 </NavContent>
             </Container>
         </Nav>
