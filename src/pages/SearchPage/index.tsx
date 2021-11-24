@@ -36,6 +36,9 @@ const SearchPage = () => {
             
             let {data, errors} = response;
 
+            console.log(data);
+            
+
             if (!errors) {
                 router.push({
                     pathname: '/repo',

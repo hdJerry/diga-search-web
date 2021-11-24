@@ -15,22 +15,9 @@ return new Promise ((resolve, reject) => {
         },
         body: JSON.stringify({
             query: `
-                query($username: String!){
-                    user(login: $username) {
-                        status {
-                            emojiHTML
-                            message
-                            __typename
-                        }
-                        name
-                        login
-                        bio
-                        company
-                        avatarUrl
-                        followers {
-                            totalCount
-                        }
-                        repositories(last: 20) {
+                query($search: String!){
+                    topic(name: $search) {
+                        repositories(last: 5) {
                             nodes {
                                 name
                                 description
@@ -39,26 +26,27 @@ return new Promise ((resolve, reject) => {
                                 updatedAt
                                 forkCount
                                 isPrivate
+                                owner{
+                                login
+                                }
                                 languages(first: 5, orderBy: {
                                     field: SIZE,
                                     direction: DESC
-                                }) {
+                                })
+                                {
                                     nodes {
-                                        color
                                         name
-                                        __typename
                                     }
-                                    __typename
                                 }
-                                __typename
+                              }
                             }
-                            __typename
-                        }
+                        stargazerCount
                     }
+                   
                 }
                 `,
             variables: {
-                "username": search,
+                "search": search,
             },
         }),
     })

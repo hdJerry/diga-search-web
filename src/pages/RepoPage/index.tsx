@@ -66,7 +66,7 @@ const RepoPage = () => {
                                     <>
                                         {
                                             repos.map((repo, index) => (
-                                                <RepositoriesCard />
+                                                <RepositoriesCard key={index} />
                                             ))
                                         }
                                     </>
@@ -76,7 +76,7 @@ const RepoPage = () => {
                                     <>
                                         {
                                         repos.map((repo, index) => (
-                                            <UserCard />
+                                            <UserCard key={index} />
                                         ))
                                         }
                                     </>
