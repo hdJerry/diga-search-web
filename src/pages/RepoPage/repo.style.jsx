@@ -62,6 +62,20 @@ export const RepoContent = styled.div `
 
     & > .right {
         width: 100%;
+
+        & > .heading {
+            font-family: var(--DMSans);
+            font-style: normal;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 30px;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+
+        & > .content {
+            
+        }
     }
 
     @media (min-width: 1024px) {
@@ -75,12 +89,52 @@ export const RepoContent = styled.div `
         & > .right {
             width: 680px;
             margin-left: 20px;
-
             height: 300px;
-            background-color: #fff;
+        }
+    }
+`;
+
+export const RepoCard = styled.div `
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 58px rgba(196, 203, 214, 0.1);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    font-family: var(--DMSans);
+
+    & > .name {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 21px;
+        color: #000000;
+
+        & > span {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 18px;
+
+            color: #91929E;
         }
     }
 
+    & > .desc {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 18px;
+        color: #91929E;
+        margin-top: 5px;
+    }
 
+    & > .others {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+        color: #91929E;
+        margin-top: 15px;
+    }
 
 `;

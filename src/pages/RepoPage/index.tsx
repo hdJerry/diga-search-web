@@ -1,5 +1,7 @@
 import React from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
+import RepositoriesCard from '../../components/Repo/RepositoriesCard';
+import UserCard from '../../components/Repo/UserCard';
 import { Container } from '../../GlobalStyles/index.styles';
 import { RepoContent, RepoWrapper } from './repo.style';
 
@@ -9,8 +11,8 @@ const RepoPage = () => {
 
     let { location: { state } } = useHistory();
 
-    console.log(state);
-    
+    const repos = [...Array(10).keys()];
+
 
     const tabs = [
         {
@@ -54,7 +56,35 @@ const RepoPage = () => {
                         </ul>
                     </div>
 
-                    <div className="right"></div>
+                    <div className="right">
+                        <h1 className='heading'>
+                            2,985 repository results
+                        </h1>
+                        <div className="content">
+                            {
+                                activeTab === 0 ? (
+                                    <>
+                                        {
+                                            repos.map((repo, index) => (
+                                                <RepositoriesCard />
+                                            ))
+                                        }
+                                    </>
+                                )
+                                : 
+                                (
+                                    <>
+                                        {
+                                        repos.map((repo, index) => (
+                                            <UserCard />
+                                        ))
+                                        }
+                                    </>
+                                )
+                            }
+                                
+                        </div>
+                    </div>
                 </RepoContent>
             </Container>
         </RepoWrapper>
