@@ -46,7 +46,7 @@ const AuthPage = () => {
                 </p>
                 <LoginGithub className="auth_btn" clientId={clientId}
                     onSuccess={(data: object) => authorize(data)}
-                    onFailure={() => console.log('fail')}>
+                    onFailure={(error:any) => console.log('fail', error)}>
                     Login with Github
                 </LoginGithub>
             </AuthCard>

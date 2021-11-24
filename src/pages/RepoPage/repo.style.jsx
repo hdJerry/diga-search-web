@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { flexBoxCenter } from '../../GlobalStyles/index.styles';
 
 export const RepoWrapper = styled.div`
@@ -76,6 +76,35 @@ export const RepoContent = styled.div `
         & > .content {
             
         }
+
+        .pagination {
+            width: 100%;
+            padding: 5px;
+            ${flexBoxCenter};
+            justify-content: flex-end;
+            margin: 65px 0;
+            
+
+            & span {
+                font-family: Inter;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 29px;
+                display: flex;
+                align-items: center;
+                text-transform: capitalize;
+                color: #B0B7C3;
+
+                &:nth-child(2){
+                    margin-left: 10px;
+                    margin-right: 20px;
+                }
+                &:nth-child(3){
+                    margin-right: 10px;
+                }
+            }
+        }
     }
 
     @media (min-width: 1024px) {
@@ -91,6 +120,25 @@ export const RepoContent = styled.div `
             margin-left: 20px;
             height: 300px;
         }
+    }
+`;
+
+export const PaginationBtn = styled.button `
+    width: 40px;
+    height: 40px;
+    background: ${props => props.disabled ? '#F3F3F3' : 'var(--primary-color)'};
+    border-radius: 10px;
+    ${flexBoxCenter};
+
+    & > svg {
+        ${props => !props.disabled && css`
+            fill: #FFF;
+            stroke: #FFF;
+        `}
+       ${props => props.disabled && css`
+            fill: #ccc;
+            stroke: #ccc;
+        `}
     }
 `;
 

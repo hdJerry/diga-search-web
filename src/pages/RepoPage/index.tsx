@@ -3,7 +3,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import RepositoriesCard from '../../components/Repo/RepositoriesCard';
 import UserCard from '../../components/Repo/UserCard';
 import { Container } from '../../GlobalStyles/index.styles';
-import { RepoContent, RepoWrapper } from './repo.style';
+import { PaginationBtn, RepoContent, RepoWrapper } from './repo.style';
 
 const RepoPage = () => {
 
@@ -12,6 +12,10 @@ const RepoPage = () => {
     let { location: { state } } = useHistory();
 
     const repos = [...Array(10).keys()];
+
+
+    const [currentPage, setCurrentPage] = React.useState(0);
+    const limit = 5;
 
 
     const tabs = [
@@ -29,6 +33,13 @@ const RepoPage = () => {
 
     let token = sessionStorage.getItem('atk');
 
+    const FilterProducts = React.useCallback(() => {
+        let start = (currentPage) * (limit);
+        let end = start + limit
+
+        return repos.slice(start, end);
+    }, [currentPage, limit, repos]);
+
     if (!state) {
         return <Redirect to='/' />
     }
@@ -36,6 +47,8 @@ const RepoPage = () => {
     if (!token) {
         return <Redirect to='/login' />
     }
+
+
 
     return (
         <RepoWrapper>
@@ -65,7 +78,7 @@ const RepoPage = () => {
                                 activeTab === 0 ? (
                                     <>
                                         {
-                                            repos.map((repo, index) => (
+                                            FilterProducts().map((repo, index) => (
                                                 <RepositoriesCard key={index} />
                                             ))
                                         }
@@ -75,7 +88,7 @@ const RepoPage = () => {
                                 (
                                     <>
                                         {
-                                        repos.map((repo, index) => (
+                                        FilterProducts().map((repo, index) => (
                                             <UserCard key={index} />
                                         ))
                                         }
@@ -84,6 +97,30 @@ const RepoPage = () => {
                             }
                                 
                         </div>
+                            <div className="pagination">
+                                {/* Pagination */}
+                                <PaginationBtn onClick={() => {
+                                    setCurrentPage(prevState => prevState - 1);
+                                }} className="prev" disabled={currentPage === 0}>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 1L1 7L7 13" stroke="#B0B7C3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+
+                                </PaginationBtn>
+
+                                <span>Prev</span>
+                                <span>Next</span>
+
+                                <PaginationBtn onClick={() => {
+                                    setCurrentPage(prevState => prevState + 1);
+                                }} className="next" disabled={currentPage >= Math.ceil(repos.length / limit) - 1}>
+                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1L7 7L1 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+
+                                </PaginationBtn>
+                            </div>
+
                     </div>
                 </RepoContent>
             </Container>
