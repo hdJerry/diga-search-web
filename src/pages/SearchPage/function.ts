@@ -16,7 +16,10 @@ return new Promise ((resolve, reject) => {
         body: JSON.stringify({
             query: `
                 query($search: String!){
-                    topic(name: $search) {
+                    topic(name: $search, orderBy: {
+                        field: CREATED_AT,
+                        direction: DESC
+                    }) {
                         repositories(last: 5) {
                             nodes {
                                 name

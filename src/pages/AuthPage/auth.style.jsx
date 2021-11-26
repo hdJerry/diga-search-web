@@ -36,7 +36,7 @@ export const AuthCard = styled.div `
         }
 
         & > span {
-            font-family: Poppins;
+            font-family: var(--Poppins);
             font-style: normal;
             font-weight: 600;
             font-size: 25px;

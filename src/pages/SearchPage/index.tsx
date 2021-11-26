@@ -40,10 +40,10 @@ const SearchPage = () => {
             
 
             if (!errors) {
-                router.push({
-                    pathname: '/repo',
-                    state: data
-                })
+                // router.push({
+                //     pathname: '/repo',
+                //     state: data
+                // })
             }
             
             

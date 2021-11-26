@@ -3,6 +3,7 @@ import { Redirect, useHistory } from 'react-router-dom';
 import RepositoriesCard from '../../components/Repo/RepositoriesCard';
 import UserCard from '../../components/Repo/UserCard';
 import { Container } from '../../GlobalStyles/index.styles';
+import { abbreviateNumber } from '../globagFunction';
 import { PaginationBtn, RepoContent, RepoWrapper } from './repo.style';
 
 const RepoPage = () => {
@@ -12,10 +13,11 @@ const RepoPage = () => {
     let { location: { state } } = useHistory();
 
     const repos = [...Array(10).keys()];
+    
 
 
     const [currentPage, setCurrentPage] = React.useState(0);
-    const limit = 5;
+    const limit = 7;
 
 
     const tabs = [
@@ -61,7 +63,7 @@ const RepoPage = () => {
                                     <li key={tab.id} onClick={() => setActiveTab(tab.id)} className={activeTab === tab.id ? 'active': ''}>
                                         <span className="name">{tab.name}</span>
                                         <span className="count">
-                                            {String(tab.count).length >= 6 ? String(tab.count).slice(0,3)+'k' : String(tab.count)}
+                                            {abbreviateNumber(tab.count)}
                                         </span>
                                     </li>
                                 ))

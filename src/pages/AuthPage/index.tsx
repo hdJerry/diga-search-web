@@ -8,6 +8,7 @@ const AuthPage = () => {
 
     const [clientId,] = React.useState('4f262cc9e20d3043da02');
     let token = sessionStorage.getItem('atk');
+    
 
     let { location: { state } } = useHistory();
     let router = useHistory();
@@ -34,7 +35,7 @@ const AuthPage = () => {
                 router.push('/');
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error.response))
     };
 
     return (
