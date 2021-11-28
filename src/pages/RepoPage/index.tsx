@@ -15,9 +15,6 @@ const RepoPage = () => {
 
     let { location: { state } } = useHistory();
 
-    // const repos = [...Array(10).keys()];
-    
-
 
     const [currentPage, setCurrentPage] = React.useState(0);
     const limit = 7;
@@ -55,12 +52,13 @@ const RepoPage = () => {
             setRepos(state);
             let users = state.map((res: any) => res.owner?.login);
             users = new Set(users);
-            setUsersData(Array.from(users));
+            users = Array.from(users);
+            setUsersData(users);
 
         };
 
         return () => mounted = false;
-    }, []);
+    }, [state]);
 
     if (!state) {
         return <Redirect to='/' />

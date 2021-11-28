@@ -41,8 +41,6 @@ const SearchPage = () => {
             
             let {data, errors} = response;
             
-            console.log(errors);
-            
 
             if (!errors) {
                 router.push({
@@ -59,7 +57,6 @@ const SearchPage = () => {
             
             
         } catch (error) {
-            console.log(error);
             setErrorChecker(true);
             setSearching(false);
             setTimeout(() => {
