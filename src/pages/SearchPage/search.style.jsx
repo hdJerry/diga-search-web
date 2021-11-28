@@ -6,9 +6,18 @@ export const SearchWrapper = styled.div `
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-flow: column;
     width: 100%;
     height: 80vh;
     padding: 10px;
+
+    & > .error {
+        color: #cf0404;
+        font-size: 0.9rem;
+        display: block;
+        text-align: center;
+        margin: 5px 0;
+    }
 `;
 
 export const SearchBox = styled.div `

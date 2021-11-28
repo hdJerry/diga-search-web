@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
-import RepositoriesCard from '../../components/Repo/RepositoriesCard';
-import UserCard from '../../components/Repo/UserCard';
+import Repositories from '../../components/Repo/Repositories';
+import Users from '../../components/Repo/Users';
 import { Container } from '../../GlobalStyles/index.styles';
 import { abbreviateNumber } from '../globagFunction';
 import { PaginationBtn, RepoContent, RepoWrapper } from './repo.style';
@@ -9,10 +9,13 @@ import { PaginationBtn, RepoContent, RepoWrapper } from './repo.style';
 const RepoPage = () => {
 
     const [activeTab, setActiveTab] = React.useState(0);
+    const [cardData, setCardData] = React.useState([])
+    const [repos, setRepos] = React.useState([]);
+    const [usersData, setUsersData] = React.useState([]);
 
     let { location: { state } } = useHistory();
 
-    const repos = [...Array(10).keys()];
+    // const repos = [...Array(10).keys()];
     
 
 
@@ -24,14 +27,16 @@ const RepoPage = () => {
         {
             name: 'Repositories',
             id: 0,
-            count: 423400
+            count: repos.length
         },
         {
             name: 'Users',
             id: 1,
-            count: 120
+            count: usersData.length
         },
-    ]
+    ];
+
+
 
     let token = sessionStorage.getItem('atk');
 
@@ -39,8 +44,23 @@ const RepoPage = () => {
         let start = (currentPage) * (limit);
         let end = start + limit
 
-        return repos.slice(start, end);
-    }, [currentPage, limit, repos]);
+        return cardData.slice(start, end);
+    }, [currentPage, limit, cardData]);
+
+    React.useEffect(():any => {
+        let mounted = true;
+
+        if(mounted) {
+            setCardData(state);
+            setRepos(state);
+            let users = state.map((res: any) => res.owner?.login);
+            users = new Set(users);
+            setUsersData(Array.from(users));
+
+        };
+
+        return () => mounted = false;
+    }, []);
 
     if (!state) {
         return <Redirect to='/' />
@@ -52,6 +72,8 @@ const RepoPage = () => {
 
 
 
+
+
     return (
         <RepoWrapper>
             <Container>
@@ -60,7 +82,14 @@ const RepoPage = () => {
                         <ul>
                             {
                                 tabs.map((tab) => (
-                                    <li key={tab.id} onClick={() => setActiveTab(tab.id)} className={activeTab === tab.id ? 'active': ''}>
+                                    <li key={tab.id} onClick={() => {
+                                        if (tab.id === 0) {
+                                            setCardData(repos);
+                                        } else {
+                                            setCardData(usersData);
+                                        }
+                                        setActiveTab(tab.id);
+                                        }} className={activeTab === tab.id ? 'active': ''}>
                                         <span className="name">{tab.name}</span>
                                         <span className="count">
                                             {abbreviateNumber(tab.count)}
@@ -73,28 +102,17 @@ const RepoPage = () => {
 
                     <div className="right">
                         <h1 className='heading'>
-                            2,985 repository results
+                            {cardData.length} {activeTab === 0 ? ' repository ' : ' users '} {' results'}
                         </h1>
                         <div className="content">
                             {
                                 activeTab === 0 ? (
-                                    <>
-                                        {
-                                            FilterProducts().map((repo, index) => (
-                                                <RepositoriesCard key={index} />
-                                            ))
-                                        }
-                                    </>
+
+                                    <Repositories data={FilterProducts()} />
                                 )
                                 : 
                                 (
-                                    <>
-                                        {
-                                        FilterProducts().map((repo, index) => (
-                                            <UserCard key={index} />
-                                        ))
-                                        }
-                                    </>
+                                   <Users data={FilterProducts()} />
                                 )
                             }
                                 

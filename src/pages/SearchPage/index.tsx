@@ -8,6 +8,7 @@ const SearchPage = () => {
 
     const [searching, setSearching] = React.useState(false);
     const [search, setSearch] = React.useState('');
+    const [errorChecker, setErrorChecker] = React.useState(false);
 
     let router = useHistory();
 
@@ -30,28 +31,42 @@ const SearchPage = () => {
 
         setSearching(true);
 
+        console.log(search);
         
         try {
             const response:any = await searchGithub(search, token);
+
+            // console.log(response);
+            
             
             let {data, errors} = response;
-
-            console.log(data);
+            
+            console.log(errors);
             
 
             if (!errors) {
-                // router.push({
-                //     pathname: '/repo',
-                //     state: data
-                // })
+                router.push({
+                    pathname: '/repo',
+                    state: data.topic.repositories.nodes
+                })
+            } else {
+                setErrorChecker(true);
+                setSearching(false);
+                setTimeout(() => {
+                    setErrorChecker(false);
+                }, 2000);
             }
             
             
         } catch (error) {
             console.log(error);
-            
+            setErrorChecker(true);
             setSearching(false);
+            setTimeout(() => {
+                setErrorChecker(false);
+            }, 2000);
         }
+
 
         
         
@@ -59,6 +74,9 @@ const SearchPage = () => {
     };
     return (
         <SearchWrapper>
+            {
+                errorChecker && <i className="error">Whoops! An erorr has occured, please try again</i>
+            }
             <SearchBox>
                 <input className="search_input" placeholder="Search" onChange={(e) => setSearch(e.currentTarget.value)} />
                 <button disabled={searching || !search} className="search_btn" onClick={beginSearch}>
